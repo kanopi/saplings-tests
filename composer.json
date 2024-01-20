@@ -1,0 +1,21 @@
+{
+  "name": "kanopi/saplings-tests",
+  "description": "A cypress test to validate Saplings installations.",
+  "type": "cypress-e2e",
+  "homepage": "https://github.com/kanopi/saplings-tests",
+  "authors": [
+    {
+      "name": "Jim Birch",
+      "homepage": "https://www.drupal.org/u/thejimbirch",
+      "role": "Maintainer"
+    },
+    {
+      "name": "Russell Eck",
+      "homepage": "https://www.drupal.org/u/stockfoot",
+      "role": "Maintainer"
+    }
+  ],
+  "require": {
+    "kanopi/shrubs": "*"
+  }
+}
