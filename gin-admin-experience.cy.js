@@ -1,11 +1,11 @@
-describe('Example test.', () => {
-  it('Things should be configured.', () => {
+describe('Verify Gin Admin Experience recipe applied.', () => {
+  it('Default admin theme should be set', () => {
     cy.login()
     cy.visit('/admin/appearance')
     cy.get('#edit-admin-theme--2').find('option:selected').should('contain', 'Gin')
     cy.get('#edit-use-admin-theme').should('be.checked')
   })
-  it('Modules should be enabled.', () => {
+  it('Gin modules should be enabled.', () => {
     cy.login()
     cy.visit('/admin/modules')
     cy.get('#edit-modules-gin-login-enable').should('be.checked')
