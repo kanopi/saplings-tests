@@ -4,7 +4,7 @@ describe('Verify the Saplings Base recipe applied properly.', () => {
    * Module install and verification section.
    *************************************************************/
   it('Verify all core modules were installed and enabled.', () => {
-    // Login and visit the extend/mdoules page.
+    // Login and visit the extend/modules page.
     cy.login()
     cy.visit('/admin/modules')
     // Verify Automated Cron module was installed and enabled.
@@ -42,7 +42,7 @@ describe('Verify the Saplings Base recipe applied properly.', () => {
   })
 
   it('Verify all contrib modules were installed and enabled.', () => {
-    // Login and visit the extend/mdoules page.
+    // Login and visit the extend/modules page.
     cy.login()
     cy.visit('/admin/modules')
     // Verify Block Class module was installed and enabled.
