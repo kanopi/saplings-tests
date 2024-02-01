@@ -1,8 +1,8 @@
 describe('Verify the Saplings Base recipe applied properly.', () => {
 
-  /*********************************************************
+  /**************************************************************
    * Module install and verification section.
-   ********************************************************/
+   *************************************************************/
   it('Verify all core modules were installed and enabled.', () => {
     // Login and visit the extend/mdoules page.
     cy.login()
@@ -79,18 +79,18 @@ describe('Verify the Saplings Base recipe applied properly.', () => {
     cy.get('#edit-modules-ultimate-cron-enable').should('be.checked')
   })
 
-  // /*********************************************************
-  //  * Pathauto pattern verification section.
-  //  ********************************************************/
+  // /**************************************************************
+  //  * Configuration Import verification section.
+  //  *************************************************************/
   it('Verify Pathauto pattern for menu path is set.', () => {
     cy.login()
     cy.visit('/admin/config/search/path/patterns')
     cy.get('[data-drupal-selector="edit-entities-menu-path"]').should('contain.text', '[node:menu-link:parents:join-path]/[node:title]')
   })
 
-  /*********************************************************
+  /**************************************************************
    * Configuration actions verification section.
-   ********************************************************/
+   *************************************************************/
 
   it('Visit Automated Cron settings and verify interval is 0.', () => {
     cy.login()
