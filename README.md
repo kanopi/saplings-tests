@@ -4,7 +4,7 @@ This repository contains end-to-end (E2E) tests written using Cypress for the Sa
 
 ## Tests Included:
 
-1. **gin-admin-experience.cy.js**: This Cypress test focuses on the Gin Admin Experience within Saplings.
+1. **Gin Admin Experience test**: This Cypress test focuses on the Gin Admin Experience within Saplings.
 
 2. **Imagemagick test**: This test verifies the functionality related to Imagemagick within Saplings.
 
