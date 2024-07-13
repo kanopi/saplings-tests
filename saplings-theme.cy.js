@@ -3,18 +3,12 @@ describe('Verify the Saplings Theme recipe applied properly.', () => {
   /**************************************************************
    * Module install and verification section.
    *************************************************************/
-  it('Verify all core modules were installed and enabled.', () => {
+  it('Verify all modules were installed and enabled.', () => {
     // Login and visit the extend/modules page.
     cy.login()
     cy.visit('/admin/modules')
     // Verify Help module was installed and enabled.
     cy.get('#edit-modules-help-enable').should('be.checked')
-  })
-
-  it('Verify all contrib modules were installed and enabled.', () => {
-    // Login and visit the extend/modules page.
-    cy.login()
-    cy.visit('/admin/modules')
     // Verify Display Suite module was installed and enabled.
     cy.get('#edit-modules-ds-enable').should('be.checked')
     // Verify Display Suite Extras module was installed and enabled.
