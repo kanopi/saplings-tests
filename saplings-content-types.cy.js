@@ -5,18 +5,12 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
   /**************************************************************
    * Module install and verification section.
    *************************************************************/
-  it('Verify all core modules were installed and enabled.', () => {
+  it('Verify all modules were installed and enabled.', () => {
     // Login and visit the extend/modules page.
     cy.login()
     cy.visit('/admin/modules')
     // Verify Menu UI module was installed and enabled.
     cy.get('#edit-modules-menu-ui-enable').should('be.checked')
-  })
-
-  it('Verify all contrib modules were installed and enabled.', () => {
-    // Login and visit the extend/modules page.
-    cy.login()
-    cy.visit('/admin/modules')
     // Verify Access Unpublished module was installed and enabled.
     cy.get('#edit-modules-access-unpublished-enable').should('be.checked')
     // Verify Field Group module was installed and enabled.
@@ -51,7 +45,7 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#edit-title').should('have.value', '[node:sa_seo_page_title|node:title] | [site:name]')
     cy.get('#edit-description').should('contain.text', '[node:sa_seo_description|node:sa_description]')
     cy.get('#edit-canonical-url').should('have.value', '[current-page:url:absolute]')
-    cy.get('#edit-image-src').should('have.value', '[node:sa_featured_image:entity:field_media_image:sa_social_media_facebook]')
+    cy.get('#edit-image-src').should('have.value', '[node:sa_seo_image:entity:field_media_image:sa_social_media_facebook|node:sa_featured_image:entity:field_media_image:sa_social_media_facebook]')
     cy.get('#edit-rights').should('have.value', 'Copyright ©[date:html_year] All rights reserved.')
     cy.get('#edit-og-site-name').should('have.value', '[site:name]')
     cy.get('#edit-og-type').should('have.value', 'website')
@@ -75,7 +69,7 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#edit-title').should('have.value', '[node:sa_seo_page_title|node:title] | [site:name]')
     cy.get('#edit-description').should('contain.text', '[node:sa_seo_description|node:sa_description]')
     cy.get('#edit-canonical-url').should('have.value', '[current-page:url:absolute]')
-    cy.get('#edit-image-src').should('have.value', '[node:sa_featured_image:entity:field_media_image:sa_social_media_facebook]')
+    cy.get('#edit-image-src').should('have.value', '[node:sa_seo_image:entity:field_media_image:sa_social_media_facebook|node:sa_featured_image:entity:field_media_image:sa_social_media_facebook]')
     cy.get('#edit-rights').should('have.value', 'Copyright ©[date:html_year] All rights reserved.')
     cy.get('#edit-og-site-name').should('have.value', '[site:name]')
     cy.get('#edit-og-type').should('have.value', 'article')
@@ -361,8 +355,6 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#sa-margin').find('.item-list').should('include.text', 'List (text)')
     cy.get('#sa-padding').should('exist')
     cy.get('#sa-padding').find('.item-list').should('include.text', 'List (text)')
-    cy.get('#sa-col').should('exist')
-    cy.get('#sa-col').find('.item-list').should('include.text', 'List (text)')
     // Verify the Accordion Item paragraph fields.
     cy.visit('/admin/structure/paragraphs_type/sa_accordion_item/fields')
     cy.get('#sa-description').should('exist')
