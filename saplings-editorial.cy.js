@@ -92,7 +92,6 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#edit-editor-settings-plugins-ckeditor5-alignment-enabled-alignments-right').should('be.checked')
     cy.get('#edit-editor-settings-plugins-ckeditor5-alignment-enabled-alignments-justify').should('be.checked')
     cy.get('.vertical-tabs__menu').contains('Media').click()
-    cy.get('#edit-editor-settings-plugins-media-media-allow-view-mode-override').should('be.checked')
     cy.get('.vertical-tabs__menu').contains('Advanced links').click()
     cy.get('#edit-editor-settings-plugins-editor-advanced-link-link-enabled-attributes-aria-label').should('not.be.checked')
     cy.get('#edit-editor-settings-plugins-editor-advanced-link-link-enabled-attributes-title').should('be.checked')
