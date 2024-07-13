@@ -152,12 +152,12 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#edit-limit--2').should('have.value', '100')
     cy.get('#edit-include-unpublished').should('not.be.checked')
   })
-  it('Verify Administrator and Content Editor roles.', () => {
+  it('Verify Administrator and Content editor roles.', () => {
     cy.login()
     cy.visit('/admin/people/roles/manage/administrator')
     cy.get('#edit-label').should('have.value', 'Administrator')
     cy.visit('/admin/people/roles/manage/content_editor')
-    cy.get('#edit-label').should('have.value', 'Content Editor')
+    cy.get('#edit-label').should('have.value', 'Content editor')
     cy.visit('/admin/people/permissions/content_editor')
     cy.get('#edit-content-editor-access-administration-pages').should('be.checked')
     cy.get('#edit-content-editor-administer-account-settings').should('not.be.checked')
