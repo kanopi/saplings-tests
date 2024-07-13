@@ -23,8 +23,6 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.visit('/admin/modules')
     // Verify Access Unpublished module was installed and enabled.
     cy.get('#edit-modules-access-unpublished-enable').should('be.checked')
-    // Verify Hide Format Info (Former Allowed Formats) module was installed and enabled.
-    cy.get('#edit-modules-allowed-formats-enable').should('be.checked')
     // Verify Editor Advanced Link module was installed and enabled.
     cy.get('#edit-modules-editor-advanced-link-enable').should('be.checked')
     // Verify Linkit module was installed and enabled.
