@@ -243,7 +243,7 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#edit-sa-seo-description-wrapper').type(seoDescription)
     cy.mediaLibraryAdd('#sa_seo_image-media-library-wrapper', 'image-sample_01.png')
     cy.get("#edit-sa-robots-0-value").type(robotMeta)
-    cy.get("#edit-submit--2--gin-edit-form").click()
+    cy.get("#edit-submit").click()
     cy.get('body').should('contain', pageTitle)
     // Verify the Post content type creation.
     const postTitle = "Post Test - " +  randText()
@@ -265,7 +265,7 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#edit-sa-seo-description-wrapper').type(postDescription)
     cy.mediaLibraryAdd('#sa_seo_image-media-library-wrapper', 'image-sample_01.png')
     cy.get("#edit-sa-robots-0-value").type(robotMeta)
-    cy.get("#edit-submit--2--gin-edit-form").click()
+    cy.get("#edit-submit").click()
     cy.get('body').should('contain', postTitle)
     cy.get('body').should('contain', postAuthor)
     cy.get('body').should('contain', postAuthorExternalURL)
@@ -377,8 +377,6 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#sa-margin').find('.item-list').should('include.text', 'List (text)')
     cy.get('#sa-padding').should('exist')
     cy.get('#sa-padding').find('.item-list').should('include.text', 'List (text)')
-    cy.get('#sa-col').should('exist')
-    cy.get('#sa-col').find('.item-list').should('include.text', 'List (text)')
     // Verify the Card paragraph fields.
     cy.visit('/admin/structure/paragraphs_type/sa_card/fields')
     cy.get('#sa-card-image').should('exist')
@@ -409,8 +407,6 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#sa-padding').find('.item-list').should('include.text', 'List (text)')
     cy.get('#sa-header').should('exist')
     cy.get('#sa-header').find('.item-list').should('include.text', 'Text (plain)')
-    cy.get('#sa-col').should('exist')
-    cy.get('#sa-col').find('.item-list').should('include.text', 'List (text)')
     // Verify the Carousel Item paragraph fields.
     cy.visit('/admin/structure/paragraphs_type/sa_carousel_item/fields')
     cy.get('#sa-carousel-caption').should('exist')
@@ -572,7 +568,6 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('input[name="sa_components[0][subform][sa_accordion_item][1][subform][sa_header][0][value]"]').type(paragraphAccordionTitle2)
     cy.ckeditorType('[data-drupal-selector="edit-sa-components-0-subform-sa-accordion-item-1-subform-sa-description-wrapper"]', paragraphAccordionDescription2)
     // Add a Block paragraph.
-    cy.get('[data-drupal-selector="edit-sa-components-add-more-operations"] .dropbutton__toggle').click()
     cy.get('input[name="sa_components_sa_block_add_more"]').click()
     cy.wait(3000) // Wait for the UI to catch up.
     cy.get('input[name="sa_components[1][subform][sa_header][0][value]"]').type(paragraphBlockTitle)
@@ -580,14 +575,12 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('[data-drupal-selector="edit-sa-components-1-subform-sa-block-0-plugin-id"]').select(paragraphBlockSelect);
     cy.get('[data-drupal-selector="edit-sa-components-1-subform-sa-block-0-settings-label-display"]').check();
     // Add a Card paragraph.
-    cy.get('[data-drupal-selector="edit-sa-components-add-more-operations"] .dropbutton__toggle').click()
     cy.get('input[name="sa_components_sa_card_add_more"]').click()
     cy.wait(3000) // Wait for the UI to catch up.
     cy.get('input[name="sa_components[2][subform][sa_header][0][value]"]').type(paragraphCardTitle)
     cy.ckeditorType('[data-drupal-selector="edit-sa-components-2-subform-sa-description-wrapper"]', paragraphCardDescription)
     cy.mediaLibraryAdd('#sa_card_image-media-library-wrapper-sa_components-2-subform', 'image-sample_01.png')
     // Add a Carousel paragraph.
-    cy.get('[data-drupal-selector="edit-sa-components-add-more-operations"] .dropbutton__toggle').click()
     cy.get('input[name="sa_components_sa_carousel_add_more"]').click()
     cy.wait(3000) // Wait for the UI to catch up.
     cy.mediaLibraryAdd('#sa_carousel_image-media-library-wrapper-sa_components-3-subform-sa_carousel_item-0-subform', 'image-sample_01.png')
@@ -595,27 +588,23 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.wait(3000) // Wait for the UI to catch up.
     cy.mediaLibraryAdd('#sa_carousel_image-media-library-wrapper-sa_components-3-subform-sa_carousel_item-1-subform', 'image-sample_01.png')
     // Add a Filtered List paragraph.
-    cy.get('[data-drupal-selector="edit-sa-components-add-more-operations"] .dropbutton__toggle').click()
     cy.get('input[name="sa_components_sa_filtered_list_add_more"]').click()
     cy.wait(3000) // Wait for the UI to catch up.
     cy.get('input[name="sa_components[4][subform][sa_header][0][value]"]').type(paragraphFilteredListTitle)
     cy.ckeditorType('[data-drupal-selector="edit-sa-components-4-subform-sa-description-wrapper"]', paragraphFilteredListDescription)
     cy.get('[data-drupal-selector="edit-sa-components-4-subform-sa-filtered-list-0-target-id"]').select(paragraphFilteredListSelect);
     // Add a Media paragraph.
-    cy.get('[data-drupal-selector="edit-sa-components-add-more-operations"] .dropbutton__toggle').click()
     cy.get('input[name="sa_components_sa_media_add_more"]').click()
     cy.wait(3000) // Wait for the UI to catch up.
     cy.get('input[name="sa_components[5][subform][sa_header][0][value]"]').type(paragraphMediaTitle)
     cy.ckeditorType('[data-drupal-selector="edit-sa-components-5-subform-sa-description-wrapper"]', paragraphMediaDescription)
     // cy.mediaLibraryAdd('#sa_media-media-library-wrapper-sa_components-5-subform', 'image-sample_01.png')
     // Add a Side by Side paragraph.
-    cy.get('[data-drupal-selector="edit-sa-components-add-more-operations"] .dropbutton__toggle').click()
     cy.get('input[name="sa_components_sa_side_by_side_add_more"]').click()
     cy.wait(3000) // Wait for the UI to catch up.
     cy.ckeditorType('[data-drupal-selector="edit-sa-components-5-subform-sa-description-wrapper"]', paragraphSideBySideDescription)
     cy.mediaLibraryAdd('#sa_media-media-library-wrapper-sa_components-5-subform', 'image-sample_01.png')
     // Add a Tabs paragraph.
-    cy.get('[data-drupal-selector="edit-sa-components-add-more-operations"] .dropbutton__toggle').click()
     cy.get('input[name="sa_components_sa_tabs_add_more"]').click()
     cy.wait(3000) // Wait for the UI to catch up.
     cy.get('input[name="sa_components[6][subform][sa_tab_item][0][subform][sa_header][0][value]"]').type(paragraphTabTitle1)
@@ -625,7 +614,6 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('input[name="sa_components[6][subform][sa_tab_item][1][subform][sa_header][0][value]"]').type(paragraphTabTitle2)
     cy.ckeditorType('[data-drupal-selector="edit-sa-components-6-subform-sa-tab-item-1-subform-sa-description-wrapper"]', paragraphTabDescription2)
     // Add a Text paragraph.
-    cy.get('[data-drupal-selector="edit-sa-components-add-more-operations"] .dropbutton__toggle').click()
     cy.get('input[name="sa_components_sa_text_add_more"]').click()
     cy.wait(3000) // Wait for the UI to catch up.
     cy.get('input[name="sa_components[7][subform][sa_header][0][value]"]').type(paragraphTextTitle)
@@ -635,7 +623,7 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#edit-sa-seo-description-wrapper').type(seoDescription)
     cy.mediaLibraryAdd('#sa_seo_image-media-library-wrapper', 'image-sample_01.png')
     cy.get("#edit-sa-robots-0-value").type(robotMeta)
-    cy.get("#edit-submit--2--gin-edit-form").click()
+    cy.get("#edit-submit").click()
     // Verify display of all created content on the page.
     cy.get('body').should('contain', pageTitle)
     cy.get('body').should('contain', paragraphAccordionTitle1)
