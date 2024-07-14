@@ -1,9 +1,9 @@
-describe('Verify the Saplings Content Types recipe applied properly.', () => {
+describe('Verify the Saplings Editorial recipe applied properly.', () => {
 
   /**************************************************************
    * Module install and verification section.
    *************************************************************/
-  it('Verify all core modules were installed and enabled.', () => {
+  it('Verify all modules were installed and enabled.', () => {
     // Login and visit the extend/modules page.
     cy.login()
     cy.visit('/admin/modules')
@@ -15,16 +15,8 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#edit-modules-media-enable').should('be.checked')
     // Verify Node module was installed and enabled.
     cy.get('#edit-modules-node-enable').should('be.checked')
-  })
-
-  it('Verify all contrib modules were installed and enabled.', () => {
-    // Login and visit the extend/modules page.
-    cy.login()
-    cy.visit('/admin/modules')
     // Verify Access Unpublished module was installed and enabled.
     cy.get('#edit-modules-access-unpublished-enable').should('be.checked')
-    // Verify Hide Format Info (Former Allowed Formats) module was installed and enabled.
-    cy.get('#edit-modules-allowed-formats-enable').should('be.checked')
     // Verify Editor Advanced Link module was installed and enabled.
     cy.get('#edit-modules-editor-advanced-link-enable').should('be.checked')
     // Verify Linkit module was installed and enabled.
@@ -94,16 +86,16 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#edit-editor-settings-plugins-ckeditor5-alignment-enabled-alignments-right').should('be.checked')
     cy.get('#edit-editor-settings-plugins-ckeditor5-alignment-enabled-alignments-justify').should('be.checked')
     cy.get('.vertical-tabs__menu').contains('Media').click()
-    cy.get('#edit-editor-settings-plugins-media-media-allow-view-mode-override').should('be.checked')
+    cy.get('#edit-editor-settings-plugins-media-media-allow-view-mode-override').should('not.be.checked')
     cy.get('.vertical-tabs__menu').contains('Advanced links').click()
-    cy.get('#edit-editor-settings-plugins-editor-advanced-link-link-enabled-attributes-aria-label').should('not.be.checked')
+    cy.get('#edit-editor-settings-plugins-editor-advanced-link-link-enabled-attributes-aria-label').should('be.checked')
     cy.get('#edit-editor-settings-plugins-editor-advanced-link-link-enabled-attributes-title').should('be.checked')
     cy.get('#edit-editor-settings-plugins-editor-advanced-link-link-enabled-attributes-class').should('be.checked')
-    cy.get('#edit-editor-settings-plugins-editor-advanced-link-link-enabled-attributes-id').should('not.be.checked')
+    cy.get('#edit-editor-settings-plugins-editor-advanced-link-link-enabled-attributes-id').should('be.checked')
     cy.get('#edit-editor-settings-plugins-editor-advanced-link-link-enabled-attributes-target').should('be.checked')
     cy.get('#edit-editor-settings-plugins-editor-advanced-link-link-enabled-attributes-rel').should('not.be.checked')
     cy.get('.vertical-tabs__menu').contains('Linkit').click()
-    cy.get('#edit-editor-settings-plugins-linkit-extension-linkit-profile').should('have.value', '')
+    cy.get('#edit-editor-settings-plugins-linkit-extension-linkit-profile').should('have.value', 'saplings_default')
     cy.get('#edit-filters-filter-html-status').should('be.checked')
     cy.get('#edit-filters-filter-html-escape-status').should('not.be.checked')
     cy.get('#edit-filters-filter-align-status').should('be.checked')
@@ -117,7 +109,7 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#edit-filters-filter-htmlcorrector-status').should('not.be.checked')
     cy.get('#edit-filters-filter-image-lazy-load-status').should('be.checked')
     cy.get('#edit-filters-media-embed-status').should('be.checked')
-    const allowedHTMLTags = '<br> <p class="author aside text-align-left text-align-center text-align-right text-align-justify"> <h2 class="text-align-left text-align-center text-align-right text-align-justify"> <h3 class="text-align-left text-align-center text-align-right text-align-justify"> <h4 class="text-align-left text-align-center text-align-right text-align-justify"> <h5 class="text-align-left text-align-center text-align-right text-align-justify"> <h6 class="text-align-left text-align-center text-align-right text-align-justify"> <a class href title target="_blank" data-entity-type data-entity-uuid data-entity-substitution> <ul class="list-nav two-col"> <blockquote class="blockquote"> <strong> <em> <u> <code> <s> <sub> <sup> <ol reversed start> <li> <table> <tr> <td rowspan colspan> <th rowspan colspan> <thead> <tbody> <tfoot> <caption> <drupal-media data-entity-type data-entity-uuid alt data-view-mode data-align>'
+    const allowedHTMLTags = '<br> <p class="author aside text-align-left text-align-center text-align-right text-align-justify"> <h2 class="text-align-left text-align-center text-align-right text-align-justify"> <h3 class="text-align-left text-align-center text-align-right text-align-justify"> <h4 class="text-align-left text-align-center text-align-right text-align-justify"> <h5 class="text-align-left text-align-center text-align-right text-align-justify"> <h6 class="text-align-left text-align-center text-align-right text-align-justify"> <a class href aria-label title id target="_blank" data-entity-type data-entity-uuid data-entity-substitution> <blockquote class="blockquote"> <strong> <em> <u> <code> <s> <sub> <sup> <ul> <ol reversed start> <li> <table> <tr> <td rowspan colspan> <th rowspan colspan> <thead> <tbody> <tfoot> <caption> <drupal-media data-entity-type data-entity-uuid alt data-align>'
     cy.get('#edit-filters-filter-html-settings-allowed-html').should('have.text', allowedHTMLTags)
     cy.get('#edit-filters-filter-html-settings-filter-html-help').should('be.checked')
     cy.get('#edit-filters-filter-html-settings-filter-html-nofollow').should('not.be.checked')
@@ -134,10 +126,9 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#edit-filters-media-embed-settings-allowed-media-types-image').should('not.be.checked')
     cy.get('#edit-filters-media-embed-settings-allowed-media-types-remote-video').should('not.be.checked')
     cy.get('#edit-filters-media-embed-settings-allowed-media-types-video').should('not.be.checked')
-    cy.get('#edit-filters-media-embed-settings-allowed-view-modes-default').should('be.checked')
+    cy.get('#edit-filters-media-embed-settings-allowed-view-modes-default').should('not.be.checked')
     cy.get('#edit-filters-media-embed-settings-allowed-view-modes-full').should('not.be.checked')
     cy.get('#edit-filters-media-embed-settings-allowed-view-modes-media-library').should('not.be.checked')
-    cy.get('#edit-filters-media-embed-settings-allowed-view-modes-sa-16-3').should('not.be.checked')
   })
   it('Verify linkit profile configuration.', () => {
     cy.login()
@@ -152,12 +143,12 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#edit-limit--2').should('have.value', '100')
     cy.get('#edit-include-unpublished').should('not.be.checked')
   })
-  it('Verify Administrator and Content Editor roles.', () => {
+  it('Verify Administrator and Content editor roles.', () => {
     cy.login()
     cy.visit('/admin/people/roles/manage/administrator')
     cy.get('#edit-label').should('have.value', 'Administrator')
     cy.visit('/admin/people/roles/manage/content_editor')
-    cy.get('#edit-label').should('have.value', 'Content Editor')
+    cy.get('#edit-label').should('have.value', 'Content editor')
     cy.visit('/admin/people/permissions/content_editor')
     cy.get('#edit-content-editor-access-administration-pages').should('be.checked')
     cy.get('#edit-content-editor-administer-account-settings').should('not.be.checked')

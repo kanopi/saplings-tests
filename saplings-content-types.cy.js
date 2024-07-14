@@ -5,18 +5,12 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
   /**************************************************************
    * Module install and verification section.
    *************************************************************/
-  it('Verify all core modules were installed and enabled.', () => {
+  it('Verify all modules were installed and enabled.', () => {
     // Login and visit the extend/modules page.
     cy.login()
     cy.visit('/admin/modules')
     // Verify Menu UI module was installed and enabled.
     cy.get('#edit-modules-menu-ui-enable').should('be.checked')
-  })
-
-  it('Verify all contrib modules were installed and enabled.', () => {
-    // Login and visit the extend/modules page.
-    cy.login()
-    cy.visit('/admin/modules')
     // Verify Access Unpublished module was installed and enabled.
     cy.get('#edit-modules-access-unpublished-enable').should('be.checked')
     // Verify Field Group module was installed and enabled.
@@ -51,7 +45,7 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#edit-title').should('have.value', '[node:sa_seo_page_title|node:title] | [site:name]')
     cy.get('#edit-description').should('contain.text', '[node:sa_seo_description|node:sa_description]')
     cy.get('#edit-canonical-url').should('have.value', '[current-page:url:absolute]')
-    cy.get('#edit-image-src').should('have.value', '[node:sa_featured_image:entity:field_media_image:sa_social_media_facebook]')
+    cy.get('#edit-image-src').should('have.value', '[node:sa_seo_image:entity:field_media_image:sa_social_media_facebook|node:sa_featured_image:entity:field_media_image:sa_social_media_facebook]')
     cy.get('#edit-rights').should('have.value', 'Copyright ©[date:html_year] All rights reserved.')
     cy.get('#edit-og-site-name').should('have.value', '[site:name]')
     cy.get('#edit-og-type').should('have.value', 'website')
@@ -75,7 +69,7 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#edit-title').should('have.value', '[node:sa_seo_page_title|node:title] | [site:name]')
     cy.get('#edit-description').should('contain.text', '[node:sa_seo_description|node:sa_description]')
     cy.get('#edit-canonical-url').should('have.value', '[current-page:url:absolute]')
-    cy.get('#edit-image-src').should('have.value', '[node:sa_featured_image:entity:field_media_image:sa_social_media_facebook]')
+    cy.get('#edit-image-src').should('have.value', '[node:sa_seo_image:entity:field_media_image:sa_social_media_facebook|node:sa_featured_image:entity:field_media_image:sa_social_media_facebook]')
     cy.get('#edit-rights').should('have.value', 'Copyright ©[date:html_year] All rights reserved.')
     cy.get('#edit-og-site-name').should('have.value', '[site:name]')
     cy.get('#edit-og-type').should('have.value', 'article')
@@ -249,7 +243,7 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#edit-sa-seo-description-wrapper').type(seoDescription)
     cy.mediaLibraryAdd('#sa_seo_image-media-library-wrapper', 'image-sample_01.png')
     cy.get("#edit-sa-robots-0-value").type(robotMeta)
-    cy.get("#edit-submit--2--gin-edit-form").click()
+    cy.get("#edit-submit").click()
     cy.get('body').should('contain', pageTitle)
     // Verify the Post content type creation.
     const postTitle = "Post Test - " +  randText()
@@ -271,7 +265,7 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#edit-sa-seo-description-wrapper').type(postDescription)
     cy.mediaLibraryAdd('#sa_seo_image-media-library-wrapper', 'image-sample_01.png')
     cy.get("#edit-sa-robots-0-value").type(robotMeta)
-    cy.get("#edit-submit--2--gin-edit-form").click()
+    cy.get("#edit-submit").click()
     cy.get('body').should('contain', postTitle)
     cy.get('body').should('contain', postAuthor)
     cy.get('body').should('contain', postAuthorExternalURL)
@@ -361,8 +355,6 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#sa-margin').find('.item-list').should('include.text', 'List (text)')
     cy.get('#sa-padding').should('exist')
     cy.get('#sa-padding').find('.item-list').should('include.text', 'List (text)')
-    cy.get('#sa-col').should('exist')
-    cy.get('#sa-col').find('.item-list').should('include.text', 'List (text)')
     // Verify the Accordion Item paragraph fields.
     cy.visit('/admin/structure/paragraphs_type/sa_accordion_item/fields')
     cy.get('#sa-description').should('exist')
@@ -385,8 +377,6 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#sa-margin').find('.item-list').should('include.text', 'List (text)')
     cy.get('#sa-padding').should('exist')
     cy.get('#sa-padding').find('.item-list').should('include.text', 'List (text)')
-    cy.get('#sa-col').should('exist')
-    cy.get('#sa-col').find('.item-list').should('include.text', 'List (text)')
     // Verify the Card paragraph fields.
     cy.visit('/admin/structure/paragraphs_type/sa_card/fields')
     cy.get('#sa-card-image').should('exist')
@@ -417,8 +407,6 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#sa-padding').find('.item-list').should('include.text', 'List (text)')
     cy.get('#sa-header').should('exist')
     cy.get('#sa-header').find('.item-list').should('include.text', 'Text (plain)')
-    cy.get('#sa-col').should('exist')
-    cy.get('#sa-col').find('.item-list').should('include.text', 'List (text)')
     // Verify the Carousel Item paragraph fields.
     cy.visit('/admin/structure/paragraphs_type/sa_carousel_item/fields')
     cy.get('#sa-carousel-caption').should('exist')
@@ -444,8 +432,6 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#sa-margin').find('.item-list').should('include.text', 'List (text)')
     cy.get('#sa-padding').should('exist')
     cy.get('#sa-padding').find('.item-list').should('include.text', 'List (text)')
-    cy.get('#sa-col').should('exist')
-    cy.get('#sa-col').find('.item-list').should('include.text', 'List (text)')
     // Verify the Media paragraph fields.
     cy.visit('/admin/structure/paragraphs_type/sa_media/fields')
     cy.get('#sa-background').should('exist')
@@ -464,8 +450,6 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#sa-media').find('.item-list').should('include.text', 'Media type: Image, Remote video')
     cy.get('#sa-padding').should('exist')
     cy.get('#sa-padding').find('.item-list').should('include.text', 'List (text)')
-    cy.get('#sa-col').should('exist')
-    cy.get('#sa-col').find('.item-list').should('include.text', 'List (text)')
     // Verify the Side by Side paragraph fields.
     cy.visit('/admin/structure/paragraphs_type/sa_side_by_side/fields')
     cy.get('#sa-background').should('exist')
@@ -486,8 +470,6 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#sa-reverse-order').find('.item-list').should('include.text', 'Boolean')
     cy.get('#sa-padding').should('exist')
     cy.get('#sa-padding').find('.item-list').should('include.text', 'List (text)')
-    cy.get('#sa-col').should('exist')
-    cy.get('#sa-col').find('.item-list').should('include.text', 'List (text)')
     // Verify the Tab paragraph fields.
     cy.visit('/admin/structure/paragraphs_type/sa_tab/fields')
     cy.get('#sa-description').should('exist')
@@ -512,8 +494,6 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#sa-tab-item').find('.item-list').should('include.text', 'Entity reference revisions')
     cy.get('#sa-tab-item').find('.item-list').should('include.text', 'Reference type: Paragraph')
     cy.get('#sa-tab-item').find('.item-list').should('include.text', 'Paragraph type: Tab')
-    cy.get('#sa-col').should('exist')
-    cy.get('#sa-col').find('.item-list').should('include.text', 'List (text)')
     // Verify the Text paragraph fields.
     cy.visit('/admin/structure/paragraphs_type/sa_text/fields')
     cy.get('#sa-background').should('exist')
@@ -528,8 +508,6 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#sa-margin').find('.item-list').should('include.text', 'List (text)')
     cy.get('#sa-padding').should('exist')
     cy.get('#sa-padding').find('.item-list').should('include.text', 'List (text)')
-    cy.get('#sa-col').should('exist')
-    cy.get('#sa-col').find('.item-list').should('include.text', 'List (text)')
   })
   it('Verify creation of Page and all paragraph types.', () => {
     cy.login()
@@ -580,7 +558,6 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('input[name="sa_components[0][subform][sa_accordion_item][1][subform][sa_header][0][value]"]').type(paragraphAccordionTitle2)
     cy.ckeditorType('[data-drupal-selector="edit-sa-components-0-subform-sa-accordion-item-1-subform-sa-description-wrapper"]', paragraphAccordionDescription2)
     // Add a Block paragraph.
-    cy.get('[data-drupal-selector="edit-sa-components-add-more-operations"] .dropbutton__toggle').click()
     cy.get('input[name="sa_components_sa_block_add_more"]').click()
     cy.wait(3000) // Wait for the UI to catch up.
     cy.get('input[name="sa_components[1][subform][sa_header][0][value]"]').type(paragraphBlockTitle)
@@ -588,14 +565,12 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('[data-drupal-selector="edit-sa-components-1-subform-sa-block-0-plugin-id"]').select(paragraphBlockSelect);
     cy.get('[data-drupal-selector="edit-sa-components-1-subform-sa-block-0-settings-label-display"]').check();
     // Add a Card paragraph.
-    cy.get('[data-drupal-selector="edit-sa-components-add-more-operations"] .dropbutton__toggle').click()
     cy.get('input[name="sa_components_sa_card_add_more"]').click()
     cy.wait(3000) // Wait for the UI to catch up.
     cy.get('input[name="sa_components[2][subform][sa_header][0][value]"]').type(paragraphCardTitle)
     cy.ckeditorType('[data-drupal-selector="edit-sa-components-2-subform-sa-description-wrapper"]', paragraphCardDescription)
     cy.mediaLibraryAdd('#sa_card_image-media-library-wrapper-sa_components-2-subform', 'image-sample_01.png')
     // Add a Carousel paragraph.
-    cy.get('[data-drupal-selector="edit-sa-components-add-more-operations"] .dropbutton__toggle').click()
     cy.get('input[name="sa_components_sa_carousel_add_more"]').click()
     cy.wait(3000) // Wait for the UI to catch up.
     cy.mediaLibraryAdd('#sa_carousel_image-media-library-wrapper-sa_components-3-subform-sa_carousel_item-0-subform', 'image-sample_01.png')
@@ -603,27 +578,23 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.wait(3000) // Wait for the UI to catch up.
     cy.mediaLibraryAdd('#sa_carousel_image-media-library-wrapper-sa_components-3-subform-sa_carousel_item-1-subform', 'image-sample_01.png')
     // Add a Filtered List paragraph.
-    cy.get('[data-drupal-selector="edit-sa-components-add-more-operations"] .dropbutton__toggle').click()
     cy.get('input[name="sa_components_sa_filtered_list_add_more"]').click()
     cy.wait(3000) // Wait for the UI to catch up.
     cy.get('input[name="sa_components[4][subform][sa_header][0][value]"]').type(paragraphFilteredListTitle)
     cy.ckeditorType('[data-drupal-selector="edit-sa-components-4-subform-sa-description-wrapper"]', paragraphFilteredListDescription)
     cy.get('[data-drupal-selector="edit-sa-components-4-subform-sa-filtered-list-0-target-id"]').select(paragraphFilteredListSelect);
     // Add a Media paragraph.
-    cy.get('[data-drupal-selector="edit-sa-components-add-more-operations"] .dropbutton__toggle').click()
     cy.get('input[name="sa_components_sa_media_add_more"]').click()
     cy.wait(3000) // Wait for the UI to catch up.
     cy.get('input[name="sa_components[5][subform][sa_header][0][value]"]').type(paragraphMediaTitle)
     cy.ckeditorType('[data-drupal-selector="edit-sa-components-5-subform-sa-description-wrapper"]', paragraphMediaDescription)
     // cy.mediaLibraryAdd('#sa_media-media-library-wrapper-sa_components-5-subform', 'image-sample_01.png')
     // Add a Side by Side paragraph.
-    cy.get('[data-drupal-selector="edit-sa-components-add-more-operations"] .dropbutton__toggle').click()
     cy.get('input[name="sa_components_sa_side_by_side_add_more"]').click()
     cy.wait(3000) // Wait for the UI to catch up.
     cy.ckeditorType('[data-drupal-selector="edit-sa-components-5-subform-sa-description-wrapper"]', paragraphSideBySideDescription)
     cy.mediaLibraryAdd('#sa_media-media-library-wrapper-sa_components-5-subform', 'image-sample_01.png')
     // Add a Tabs paragraph.
-    cy.get('[data-drupal-selector="edit-sa-components-add-more-operations"] .dropbutton__toggle').click()
     cy.get('input[name="sa_components_sa_tabs_add_more"]').click()
     cy.wait(3000) // Wait for the UI to catch up.
     cy.get('input[name="sa_components[6][subform][sa_tab_item][0][subform][sa_header][0][value]"]').type(paragraphTabTitle1)
@@ -633,7 +604,6 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('input[name="sa_components[6][subform][sa_tab_item][1][subform][sa_header][0][value]"]').type(paragraphTabTitle2)
     cy.ckeditorType('[data-drupal-selector="edit-sa-components-6-subform-sa-tab-item-1-subform-sa-description-wrapper"]', paragraphTabDescription2)
     // Add a Text paragraph.
-    cy.get('[data-drupal-selector="edit-sa-components-add-more-operations"] .dropbutton__toggle').click()
     cy.get('input[name="sa_components_sa_text_add_more"]').click()
     cy.wait(3000) // Wait for the UI to catch up.
     cy.get('input[name="sa_components[7][subform][sa_header][0][value]"]').type(paragraphTextTitle)
@@ -643,7 +613,7 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#edit-sa-seo-description-wrapper').type(seoDescription)
     cy.mediaLibraryAdd('#sa_seo_image-media-library-wrapper', 'image-sample_01.png')
     cy.get("#edit-sa-robots-0-value").type(robotMeta)
-    cy.get("#edit-submit--2--gin-edit-form").click()
+    cy.get("#edit-submit").click()
     // Verify display of all created content on the page.
     cy.get('body').should('contain', pageTitle)
     cy.get('body').should('contain', paragraphAccordionTitle1)

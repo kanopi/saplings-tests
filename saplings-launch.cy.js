@@ -3,15 +3,7 @@ describe('Verify the Saplings Launch recipe applied properly.', () => {
   /**************************************************************
    * Module install and verification section.
    *************************************************************/
-  it('Verify all core modules were installed and enabled.', () => {
-    // Login and visit the extend/modules page.
-    cy.login()
-    cy.visit('/admin/modules')
-    // Verify Tour module was installed and enabled.
-    cy.get('#edit-modules-tour-enable').should('be.checked')
-  })
-
-  it('Verify all contrib modules were installed and enabled.', () => {
+  it('Verify all modules were installed and enabled.', () => {
     // Login and visit the extend/modules page.
     cy.login()
     cy.visit('/admin/modules')
@@ -29,6 +21,8 @@ describe('Verify the Saplings Launch recipe applied properly.', () => {
     cy.get('#edit-modules-seckit-enable').should('be.checked')
     // Verify Security Review module was installed and enabled.
     cy.get('#edit-modules-security-review-enable').should('be.checked')
+    // Verify Tour module was installed and enabled.
+    cy.get('#edit-modules-tour-enable').should('be.checked')
     // Verify Unused Modules module was installed and enabled.
     cy.get('#edit-modules-unused-modules-enable').should('be.checked')
   })
