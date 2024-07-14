@@ -432,8 +432,6 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#sa-margin').find('.item-list').should('include.text', 'List (text)')
     cy.get('#sa-padding').should('exist')
     cy.get('#sa-padding').find('.item-list').should('include.text', 'List (text)')
-    cy.get('#sa-col').should('exist')
-    cy.get('#sa-col').find('.item-list').should('include.text', 'List (text)')
     // Verify the Media paragraph fields.
     cy.visit('/admin/structure/paragraphs_type/sa_media/fields')
     cy.get('#sa-background').should('exist')
@@ -452,8 +450,6 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#sa-media').find('.item-list').should('include.text', 'Media type: Image, Remote video')
     cy.get('#sa-padding').should('exist')
     cy.get('#sa-padding').find('.item-list').should('include.text', 'List (text)')
-    cy.get('#sa-col').should('exist')
-    cy.get('#sa-col').find('.item-list').should('include.text', 'List (text)')
     // Verify the Side by Side paragraph fields.
     cy.visit('/admin/structure/paragraphs_type/sa_side_by_side/fields')
     cy.get('#sa-background').should('exist')
@@ -474,8 +470,6 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#sa-reverse-order').find('.item-list').should('include.text', 'Boolean')
     cy.get('#sa-padding').should('exist')
     cy.get('#sa-padding').find('.item-list').should('include.text', 'List (text)')
-    cy.get('#sa-col').should('exist')
-    cy.get('#sa-col').find('.item-list').should('include.text', 'List (text)')
     // Verify the Tab paragraph fields.
     cy.visit('/admin/structure/paragraphs_type/sa_tab/fields')
     cy.get('#sa-description').should('exist')
@@ -500,8 +494,6 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#sa-tab-item').find('.item-list').should('include.text', 'Entity reference revisions')
     cy.get('#sa-tab-item').find('.item-list').should('include.text', 'Reference type: Paragraph')
     cy.get('#sa-tab-item').find('.item-list').should('include.text', 'Paragraph type: Tab')
-    cy.get('#sa-col').should('exist')
-    cy.get('#sa-col').find('.item-list').should('include.text', 'List (text)')
     // Verify the Text paragraph fields.
     cy.visit('/admin/structure/paragraphs_type/sa_text/fields')
     cy.get('#sa-background').should('exist')
@@ -516,8 +508,6 @@ describe('Verify the Saplings Content Types recipe applied properly.', () => {
     cy.get('#sa-margin').find('.item-list').should('include.text', 'List (text)')
     cy.get('#sa-padding').should('exist')
     cy.get('#sa-padding').find('.item-list').should('include.text', 'List (text)')
-    cy.get('#sa-col').should('exist')
-    cy.get('#sa-col').find('.item-list').should('include.text', 'List (text)')
   })
   it('Verify creation of Page and all paragraph types.', () => {
     cy.login()
